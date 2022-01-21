@@ -1,0 +1,38 @@
+<div class="col-md-6 offset-md-3 p-5 my-5  border border-info bg-success p-2 text-dark bg-opacity-50">
+    <h3>CREATE PATIENT</h3>
+    
+    
+    <form ngNativeValidate (ngSubmit)="onSubmit()">
+        <div class="form-group py-2">
+            <label> Name</label>
+            <input type="text" class="form-control" id = "name" placeholder = "Enter  Name"
+            [(ngModel)]="patient.name" name="name" required>
+        </div>
+    
+    
+        <div class="form-group py-2">
+                <label>Choose date</label>
+            <input type="date" class="form-control" id = "date" placeholder = "Enter DATE"
+            [(ngModel)]="patient.date" name="date" required>
+        </div>
+    
+        <div class="form-group py-2">
+            <label>Enter Age</label>
+            <input type="text" class="form-control" id = "age" placeholder = "Enter Age"
+            [(ngModel)]="patient.age" name="age" required>
+        </div>
+
+        <div class="form-group py-2">
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="selectedName" name="selectedName" (change)="onSelect()">
+                <option hidden disabled >Select One</option>
+                <option *ngFor="let name of doctorName" value={{name}}> {{name}}</option>
+              </select>
+        </div>
+
+        <div class="form-group py-2">
+            <span class="text-dark"  >{{errorMessage}}</span>
+        </div>
+      
+        <button class="btn btn-success my-3" type="submit">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,97 @@
+<div class="col-md-7 offset-md-4 p-5 ">
+
+    <form ngNativeValidate class="row g-3"  (ngSubmit)="onSubmit()">
+        <div class="col-auto">
+            <input type="text" class="form-control" id = "id" placeholder = "Enter Patient ID"
+                [(ngModel)]= "patientId" name="id" required>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">SEARCH</button>
+        </div>
+      </form>
+</div>
+<div class="form-group py-2">
+    <span class="text-dark"  >{{message}}</span>
+</div>
+<div class="container my-3 bg-white p-2 text-dark bg-opacity-75" *ngIf="show">
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>age</th>
+                <th>DATE OF Visit</th>
+                <th>Doctor Visited</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <td>{{ patient.name}}</td>
+                <td>{{ patient.age}}</td>
+                <td>{{ patient.date}}</td>
+                <td>{{ doctorName}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        update
+                      </button>
+                      <button (click)="deletePatient(patient.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form ngNativeValidate (ngSubmit)="updatePatient()">
+                <div class="form-group py-2">
+                    <label> Id</label>
+                    <input type="text" class="form-control" id = "id" placeholder = "Enter  Name" disabled
+                    [(ngModel)]="patient.id" name="id" required>
+                </div>
+            
+                <div class="form-group py-2">
+                    <label> Name</label>
+                    <input type="text" class="form-control" id = "name" placeholder = "Enter  Name"
+                    [(ngModel)]="patient.name" name="name" required>
+                </div>
+            
+            
+                <div class="form-group py-2">
+                        <label>Choose date</label>
+                    <input type="date" class="form-control" id = "date" placeholder = "Enter DATE"
+                    [(ngModel)]="patient.date" name="date" required>
+                </div>
+            
+                <div class="form-group py-2">
+                    <label>Enter Age</label>
+                    <input type="text" class="form-control" id = "age" placeholder = "Enter Age"
+                    [(ngModel)]="patient.age" name="age" required>
+                </div>
+        
+                <div class="form-group py-2">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="selectedName" name="selectedName" (change)="onSelect()">
+                        <option hidden disabled >Select One</option>
+                        <option *ngFor="let name of doctorarray" value={{name}}> {{name}}</option>
+                      </select>
+                </div>
+              
+                <button class="btn btn-success my-3" type="submit"  data-bs-dismiss="modal">save</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

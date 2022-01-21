@@ -1,0 +1,104 @@
+
+<div class="container mx-auto" style="width: 900px;">
+    <h3 class="text-center ">Select Doctor</h3>
+    <div class="form-group py-2" >
+        <select class="form-select form-select-sm shadow-lg p-3 mb-5 bg-body rounded " aria-label=".form-select-sm example" [(ngModel)]="selectedName" name="selectedName" (change)="onSelect()">
+            <option hidden disabled >Select One</option>
+            <option *ngFor="let name of doctorName" value={{name}} >{{name}}</option>
+          </select>
+    </div>
+    <div class="form-group py-2">
+        <span class="text-dark"  >{{message}}</span>
+    </div>
+</div>
+<div class="container my-3  bg-white p-2 text-dark bg-opacity-75" *ngIf="show">
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+               
+                <th>Name</th>
+                <th>specialization</th>
+                <th>PATIENT ATTENDED</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <td>{{ doctor.name}}</td>
+                <td>{{ doctor.specialization}}</td>
+                <td>{{ patientsAttended}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        update
+                      </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Update Doctor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form ngNativeValidate (ngSubmit)="updateDocotor()">
+                <div class="form-group py-2">
+                    <label> id</label>
+                    <input type="text" class="form-control" id = "id" 
+                        [(ngModel)]= "doctor.id" name="id" required>
+                </div>
+    
+                <div class="form-group py-2">
+                    <label> Name</label>
+                    <input type="text" class="form-control" id = "name" placeholder = "Enter  Name"
+                        [(ngModel)]= "doctor.name" name="name" required>
+                </div>
+            
+                <div class="form-group py-2">
+                    <label> AGE</label>
+                    <input type="text" class="form-control" id = "age" placeholder = "Enter Age"
+                        [(ngModel)]="doctor.age" name="age" required>
+                </div>
+            
+                <h6>Select Gender</h6>
+                 <div class="form-check">
+                    <input [(ngModel)]="doctor.gender" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="m">
+                    <label  class="form-check-label" for="flexRadioDefault1" >
+                      Male
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input [(ngModel)]="doctor.gender" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked value="f">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                    Female   
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input [(ngModel)]="doctor.gender" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="o">
+                    <label  class="form-check-label" for="flexRadioDefault1" >
+                      Other
+                    </label>
+                  </div>
+          
+                <div class="form-group py-2">
+                    <label> Specialization</label>
+                    <input type="text" class="form-control" id = "specialization" placeholder = "Enter specialization"
+                        [(ngModel)]="doctor.specialization" name="specialization" required>
+                </div>
+               
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >save</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>

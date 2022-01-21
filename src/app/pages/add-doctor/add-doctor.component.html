@@ -1,0 +1,55 @@
+<div class="col-md-6 offset-md-3 p-5 my-5 border border-info bg-success p-2 text-dark bg-opacity-50" >
+  <h3 class="fa fa-align-center">ADD DOCTOR</h3>
+  
+  
+  <form ngNativeValidate (ngSubmit)="onSubmit()">
+    
+      <div class="form-group py-2">
+          <label> Name</label>
+          <input type="text" class="form-control" id = "name" placeholder = "Enter  Name"
+              [(ngModel)]= "doctor.name" name="name" required>
+      </div>
+      <div class="invalid-feedback">
+        Please choose a username.
+      </div>
+  
+  
+      <div class="form-group py-2">
+          <label> AGE</label>
+          <input type="text" class="form-control" id = "age" placeholder = "Enter Age"
+              [(ngModel)]="doctor.age" name="age" required>
+      </div>
+  
+  
+      <h6>Select Gender</h6>
+       <div class="form-check">
+          <input [(ngModel)]="doctor.gender" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="m">
+          <label  class="form-check-label" for="flexRadioDefault1" >
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <input [(ngModel)]="doctor.gender" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked value="f">
+          <label class="form-check-label" for="flexRadioDefault2">
+          Female   
+          </label>
+        </div>
+        <div class="form-check">
+          <input [(ngModel)]="doctor.gender" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="o">
+          <label  class="form-check-label" for="flexRadioDefault1" >
+            Other
+          </label>
+        </div>
+
+      <div class="form-group py-2">
+          <label> Specialization</label>
+          <input type="text" class="form-control" id = "specialization" placeholder = "Enter specialization"
+              [(ngModel)]="doctor.specialization" name="specialization" required>
+      </div>
+      <div class="form-group py-2">
+          <span class="text-dark"  >{{errorMessage}}</span>
+      </div>
+    
+      <button class="btn btn-dark my-3" type="submit">Submit</button>
+  </form>
+  </div>
